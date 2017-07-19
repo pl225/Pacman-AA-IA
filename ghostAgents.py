@@ -60,8 +60,8 @@ class DirectionalGhost( GhostAgent ):
       visitados = set()
       fila.push((state,[]) , 0)
 
-      #for e in state.getGhostPositions():
-        #if e != state.getGhostPosition(self.index): visitados.add(e)
+      for e in state.getGhostPositions():
+        if e != state.getGhostPosition(self.index): visitados.add(e)
       
       while fila.heap:
         currentState , actionsSequence = fila.pop()
