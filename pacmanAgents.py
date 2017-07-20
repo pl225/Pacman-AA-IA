@@ -51,35 +51,36 @@ class PacmanAgent(game.Agent):
     def getAction(self, state):
         from util import PriorityQueue, Counter, manhattanDistance
 
-        foodGrid = state.getFood()
+        foodGrid = state.getFood() # carrega o grid de comidas do estado atual
         foodList = list(foodGrid.asList())
 
-        _, nextFood = min([(manhattanDistance(state.getPacmanPosition(), food), food) for food in foodList])
+        _, nextFood = min([(manhattanDistance(state.getPacmanPosition(), food), food) for food in foodList]) # identifica a comida mais proxima que sera o objetivo
 
-        fila = PriorityQueue()
+        fila = PriorityQueue() # inicia as estruturas de dados necessarias a busca A*
         fila.push((state, []), 0)
         visitados = set()
         
         while fila.heap:
-            currentState, actionSequence = fila.pop()
+            currentState, actionSequence = fila.pop() # remove um no da borda
 
-            if currentState.getPacmanPosition() == nextFood:
+            if currentState.getPacmanPosition() == nextFood: # verifica o objetivo
               if len(actionSequence) > 0:
                 return actionSequence[0]
               else:
-                return  currentState.getLegalPacmanActions()[0]
+                return  currentState.getLegalActions[0]
 
-            for nextState, nextAction, nextPosition in self.getPacmanSuccessors(currentState.getLegalActions(self.index), currentState):
-                if not nextPosition in state.getGhostPositions():
-                  if nextPosition not in visitados:
-                    visitados.add(nextPosition)  
+            visitados.add(currentState.getPacmanPosition()) # adiciona estado ao conjunto de visitados
+
+            for nextState, nextAction, nextPosition in self.getPacmanSuccessors(currentState.getLegalActions(self.index), currentState): # procura estados sucessores do estado atual
+                if not nextPosition in state.getGhostPositions():# or state.getGhostState(1).scaredTimer > 0: # verifica se a solucao nao possui fantasmas
+                  if nextPosition not in visitados:  # adiciona o estado a fila, se ainda nao foi visitado
                     acaoCompleto = actionSequence + [nextAction]  
                     fila.push((nextState, acaoCompleto), len(acaoCompleto) + manhattanDistance(nextFood, state.getPacmanPosition()))
 
-        for _, action, pacmanNextPosition in self.getPacmanSuccessors(state.getLegalPacmanActions(), state):
-          if pacmanNextPosition not in state.getGhostPositions() and action != 'Stop': 
+        for _, action, pacmanNextPosition in self.getPacmanSuccessors(state.getLegalPacmanActions(), state): # caso nao exista posicao otima, seleciona a primeira
+          if pacmanNextPosition not in state.getGhostPositions() and action != 'Stop': # acao valida que nao possua fantasmas
             return action
-        return random.choice(state.getLegalPacmanActions())
+        return random.choice(state.getLegalPacmanActions()) # caso o pacman esteja em xeque-mate, seleciona uma acao aleatoria
 
 def scoreEvaluation(state):
   return state.getScore()  
