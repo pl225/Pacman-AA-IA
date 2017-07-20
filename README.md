@@ -12,7 +12,7 @@ Passo 5: Garantir que o Pacman deve, sempre que possível, tentar coletar utiliz
 
 Links para a visualização do jogo em funcionamento: 
 
--> Jogo sem fantasmas: https://youtu.be/KXUoPIn6bs8
+-> Jogo sem fantasmas: https://youtu.be/KXUoPIn6bs8 
 -> Jogo com fantasmas: https://youtu.be/wzl4DgcMYD4
 
 Trabalho realizado por: Matheus Abreu, Julia Rodrigues e João Victor Araújo.
