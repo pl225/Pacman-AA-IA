@@ -87,7 +87,7 @@ class PacmanAgentFoodManhattan(game.Agent):
     def getPacmanSuccessors(self, legalActions, state):
       return [(state.generateSuccessor(self.index, action), action, state.generateSuccessor(self.index, action).getPacmanPosition()) for action in legalActions]
 
-    def avaliaPosicoes(self, food, posicoesFantasmas, i):
+    def avaliaPosicoes(self, food, posicoesFantasmas, i): # avalia posicoes pela distancia Manhattan
         from util import manhattanDistance
         for p in posicoesFantasmas:
             if manhattanDistance(p, food) < i:
