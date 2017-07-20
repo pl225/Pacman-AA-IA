@@ -43,7 +43,7 @@ class GreedyAgent(Agent):
     bestActions = [pair[1] for pair in scored if pair[0] == bestScore]
     return random.choice(bestActions)
 
-class PacmanAgent(game.Agent):
+class PacmanAgent(game.Agent): # Abordagem 1: o objetivo eh a comida mais próxima que nao esta ocupada por um fantasma
 
     def getPacmanSuccessors(self, legalActions, state):
       return [(state.generateSuccessor(self.index, action), action, state.generateSuccessor(self.index, action).getPacmanPosition()) for action in legalActions]
@@ -82,12 +82,12 @@ class PacmanAgent(game.Agent):
             return action
         return random.choice(state.getLegalPacmanActions()) # caso o pacman esteja em xeque-mate, seleciona uma acao aleatoria
 
-class PacmanAgentFoodManhattan(game.Agent):
+class PacmanAgentFoodManhattan(game.Agent): # Abordagem 2: o objetivo eh a comida mais proxima que esteja a uma distancia minima de manhattan a um fantasma
 
     def getPacmanSuccessors(self, legalActions, state):
       return [(state.generateSuccessor(self.index, action), action, state.generateSuccessor(self.index, action).getPacmanPosition()) for action in legalActions]
 
-    def avaliaPosicoes(self, food, posicoesFantasmas, i): # avalia posicoes pela distancia Manhattan
+    def avaliaPosicoes(self, food, posicoesFantasmas, i): # avalia posicoes pela distancia Manhattan ao objeto comida ou fantasma
         from util import manhattanDistance
         for p in posicoesFantasmas:
             if manhattanDistance(p, food) < i:
