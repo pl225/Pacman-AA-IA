@@ -17,11 +17,11 @@ Links para a visualização do jogo em funcionamento:
 -> Jogo sem fantasmas: https://youtu.be/KXUoPIn6bs8  
 -> Jogo com fantasmas: https://youtu.be/wzl4DgcMYD4  
 
-Comandos:
-  python pacman.py -g GhostAgent -p PacmanAgent (comida mais próxima)
-  python pacman.py -g GhostAgent -p PacmanAgent -k 0 (nenhum fantasma)
-  python pacman.py -g GhostAgent -p PacmanAgentFoodManhattan (comida mais próxima distância Manhattan)
-  python pacman.py -g GhostAgent -p PacmanAgentFoodManhattan -k 0
+Comandos: </br>
+  python pacman.py -g GhostAgent -p PacmanAgent (comida mais próxima) </br>
+  python pacman.py -g GhostAgent -p PacmanAgent -k 0 (nenhum fantasma) </br>
+  python pacman.py -g GhostAgent -p PacmanAgentFoodManhattan (comida mais próxima distância Manhattan) </br>
+  python pacman.py -g GhostAgent -p PacmanAgentFoodManhattan -k 0 </br>
   
   opcional: -l originalClassic OU contestClassic ou outros mapas.
 
